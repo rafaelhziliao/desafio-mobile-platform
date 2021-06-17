@@ -1,19 +1,25 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '14.4'
 
+def base_pods
+  pod 'SwiftLint'
+end
+
+workspace 'desafio'
+
+
 target 'desafio' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for desafio
+  base_pods
 
   target 'desafioTests' do
     inherit! :search_paths
-    # Pods for testing
   end
 
   target 'desafioUITests' do
-    # Pods for testing
+  
   end
 
 end

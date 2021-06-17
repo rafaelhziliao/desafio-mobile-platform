@@ -9,7 +9,7 @@ import UIKit
 
 class AdsListViewController: UIViewController {
 
-    // Mark: properties
+    // MARK: properties
 
     var ads: [Ad] = []
     lazy private var flowLayout: AdListViewLayout = {
@@ -19,7 +19,7 @@ class AdsListViewController: UIViewController {
     let session = URLSession.shared
     let url = URL(string: "https://nga.olx.com.br/api/v1.2/public/ads?lim=25&region=11&sort=relevance&state=1&lang=pt")!
 
-    // Mark: outlets
+    // MARK: outlets
 
     @IBOutlet weak var adsCollectionView: UICollectionView!
 
@@ -28,9 +28,9 @@ class AdsListViewController: UIViewController {
         setupUI()
         getAds()
     }
-    
-    // Mark: REST
-    
+
+    // MARK: REST
+
     private func getAds() {
         let task = session.dataTask(with: url, completionHandler: { data, response, error in
             // Check the response
@@ -43,7 +43,7 @@ class AdsListViewController: UIViewController {
             do {
                 let json = try JSONDecoder().decode(ListAds.self, from: data! )
                 print(json)
-                self.ads = json.list_ads ?? []
+                self.ads = json.listAds ?? []
                 DispatchQueue.main.async {
                     self.adsCollectionView.reloadData()
                 }
@@ -64,7 +64,7 @@ extension AdsListViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         guard let cell = adsCollectionView.dequeueReusableCell(withReuseIdentifier: "AdListCardViewCellIdentifier", for: indexPath) as? AdListCardViewCell, !ads.isEmpty else {
             return UICollectionViewCell()
         }
@@ -76,7 +76,7 @@ extension AdsListViewController: UICollectionViewDelegate, UICollectionViewDataS
 // MARK: Setup
 
 extension AdsListViewController {
-    
+
     private func setupUI() {
             adsCollectionView.delegate = self
             adsCollectionView.dataSource = self
