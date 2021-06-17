@@ -120,12 +120,64 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		6C58CC742625FF09001F7524 = {
+		3298F960267BC8C600559CB5 /* Project */ = {
 			isa = PBXGroup;
 			children = (
 				6C58CC7F2625FF09001F7524 /* desafio */,
-				6C58CC962625FF0D001F7524 /* desafioTests */,
 				6C58CCA12625FF0D001F7524 /* desafioUITests */,
+				6C58CC962625FF0D001F7524 /* desafioTests */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
+		3298F961267BDE2100559CB5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3298F964267BDE6100559CB5 /* Screens */,
+				3298F963267BDE4500559CB5 /* Properties */,
+				3298F962267BDE3300559CB5 /* Assets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3298F962267BDE3300559CB5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				6C58CC892625FF0C001F7524 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		3298F963267BDE4500559CB5 /* Properties */ = {
+			isa = PBXGroup;
+			children = (
+				6C58CC8E2625FF0C001F7524 /* Info.plist */,
+			);
+			path = Properties;
+			sourceTree = "<group>";
+		};
+		3298F964267BDE6100559CB5 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				6C58CC8B2625FF0C001F7524 /* LaunchScreen.storyboard */,
+				6C58CC862625FF09001F7524 /* Main.storyboard */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		3298F971267BEA2E00559CB5 /* EntryPoints */ = {
+			isa = PBXGroup;
+			children = (
+				6C58CC802625FF09001F7524 /* AppDelegate.swift */,
+				6C58CC822625FF09001F7524 /* SceneDelegate.swift */,
+			);
+			path = EntryPoints;
+			sourceTree = "<group>";
+		};
+		6C58CC742625FF09001F7524 = {
+			isa = PBXGroup;
+			children = (
+				3298F960267BC8C600559CB5 /* Project */,
 				6C58CC7E2625FF09001F7524 /* Products */,
 				1A76A5FB23FB7CD03AB1111D /* Pods */,
 				B26EE6A02C99CECDF5008967 /* Frameworks */,
@@ -145,13 +197,9 @@
 		6C58CC7F2625FF09001F7524 /* desafio */ = {
 			isa = PBXGroup;
 			children = (
+				3298F971267BEA2E00559CB5 /* EntryPoints */,
+				3298F961267BDE2100559CB5 /* Resources */,
 				6C58CCB62625FFB4001F7524 /* UI */,
-				6C58CC802625FF09001F7524 /* AppDelegate.swift */,
-				6C58CC822625FF09001F7524 /* SceneDelegate.swift */,
-				6C58CC862625FF09001F7524 /* Main.storyboard */,
-				6C58CC892625FF0C001F7524 /* Assets.xcassets */,
-				6C58CC8B2625FF0C001F7524 /* LaunchScreen.storyboard */,
-				6C58CC8E2625FF0C001F7524 /* Info.plist */,
 				6C58CCD126261245001F7524 /* Ad.swift */,
 				6C2582C72626305600E30FDB /* AdsListViewController.swift */,
 			);
@@ -537,6 +585,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Project/desafio/Resources/Properties/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -592,6 +641,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Project/desafio/Resources/Properties/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -610,7 +660,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87H886L876;
-				INFOPLIST_FILE = desafio/Info.plist;
+				INFOPLIST_FILE = Project/desafio/Resources/Properties/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -630,7 +680,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87H886L876;
-				INFOPLIST_FILE = desafio/Info.plist;
+				INFOPLIST_FILE = Project/desafio/Resources/Properties/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
