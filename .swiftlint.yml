@@ -1,0 +1,18 @@
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+
+disabled_rules:
+  - private_over_fileprivate
+
+function_body_length:
+  - 20
+
+cyclomatic_complexity:
+  - 5
+
+line_length: 250
+
+identifier_name:
+  excluded: # excluded via string array
+    - id
+    - URL

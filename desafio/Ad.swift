@@ -8,7 +8,7 @@
 import Foundation
 
 struct ListAds: Decodable {
-    let list_ads: [Ad]?
+    let listAds: [Ad]?
 }
 
 struct Ad: Decodable {
@@ -20,20 +20,20 @@ struct AdDetail: Decodable {
     let thumbnail: AdThumbnail?
     let prices: [AdPrice]?
     let locations: [AdLocation]
-    let list_time: AdListTime
+    let listTime: AdListTime
 }
 
 struct AdThumbnail: Decodable {
     let height: Int
     let width: Int
     let path: String
-    let base_url: String
-    let media_id: String
+    let baseUrl: String
+    let mediaId: String
 }
 
 struct AdPrice: Decodable {
     let label: String
-    let price_value: Int
+    let priceValue: Int
 }
 
 struct AdLocation: Decodable {
