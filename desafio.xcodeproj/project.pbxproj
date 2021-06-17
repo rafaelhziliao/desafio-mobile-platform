@@ -120,14 +120,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		3298F960267BC8C600559CB5 /* Project */ = {
+		3298F960267BC8C600559CB5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				6C58CC7F2625FF09001F7524 /* desafio */,
 				6C58CCA12625FF0D001F7524 /* desafioUITests */,
 				6C58CC962625FF0D001F7524 /* desafioTests */,
 			);
-			path = Project;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		3298F961267BDE2100559CB5 /* Resources */ = {
@@ -177,7 +177,7 @@
 		6C58CC742625FF09001F7524 = {
 			isa = PBXGroup;
 			children = (
-				3298F960267BC8C600559CB5 /* Project */,
+				3298F960267BC8C600559CB5 /* Sources */,
 				6C58CC7E2625FF09001F7524 /* Products */,
 				1A76A5FB23FB7CD03AB1111D /* Pods */,
 				B26EE6A02C99CECDF5008967 /* Frameworks */,
@@ -660,7 +660,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87H886L876;
-				INFOPLIST_FILE = Project/desafio/Resources/Properties/Info.plist;
+				INFOPLIST_FILE = Sources/desafio/Resources/Properties/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -680,7 +680,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87H886L876;
-				INFOPLIST_FILE = Project/desafio/Resources/Properties/Info.plist;
+				INFOPLIST_FILE = Sources/desafio/Resources/Properties/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
