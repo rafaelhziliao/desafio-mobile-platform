@@ -1,23 +1,37 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
+def proj_name
+  "desafio"
+end
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+def proj
+  {
+      plist: "./#{proj_name}/Info.plist",
+      xcodeproj: "./#{proj_name}.xcodeproj/",
+      workspace: "./#{proj_name}.xcworkspace",
+      scheme: "#{proj_name}",
+      app_identifier: "br.com.olx.desafio"
+  }
+end
 
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
+  
+  #--------------------------- Unit Test Lanes ---------------------------#
+  desc "Build App and run tests"
+  lane :testing do
+    scan(scheme: "#{proj[:scheme]}")
+  end
+
+  #----------------------- Utils ------------------------#
+  after_each() do |lane, _|
+    message = "Running lane `#{lane}` finished successfully! 🎉"
+
+    notification(message: message) unless is_ci
+  end
+
+  error() do |lane, exception, _|
+    message = "Running lane `#{lane}` finished with errors! ⛔️"
+
+    notification(message: "Exception: #{exception}", subtitle: message) unless is_ci
   end
 end
