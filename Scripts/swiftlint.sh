@@ -1,6 +1,5 @@
 #!/bin/sh
-if which "${PODS_ROOT}/SwiftLint/swiftlint" >/dev/null; then
+if [ which "${PODS_ROOT}/SwiftLint/swiftlint" >/dev/null ] && [ ! -z "$CI" ]; 
+then
     ${PODS_ROOT}/SwiftLint/swiftlint
-else
-    echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
 fi

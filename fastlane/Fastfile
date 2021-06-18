@@ -21,7 +21,8 @@ platform :ios do
   lane :testing do |options|
     scan(
       scheme: "#{proj[:scheme]}",
-      derived_data_path: options[:derived_data_path]
+      derived_data_path: options[:derived_data_path],
+      xcargs: "CI=#{is_ci}"
     )
   end
 
