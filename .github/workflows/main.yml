@@ -43,5 +43,7 @@ jobs:
         run: ./.tuist-bin/tuist generate
       - name: Install Pods
         run: bundle exec pod install
+      - name: Lint Project
+        run: bundle exec fastlane lint
       - name: Run Tests
         run: bundle exec fastlane testing derived_data_path:"$(./Scripts/deriveddata.sh)"

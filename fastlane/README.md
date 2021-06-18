@@ -21,6 +21,11 @@ or alternatively using `brew install fastlane`
 fastlane ios testing
 ```
 Build App and run tests
+### ios lint
+```
+fastlane ios lint
+```
+Lint project
 
 ----
 

@@ -1,5 +1,8 @@
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
+  - .tuist-bin
+  - Project.swift
+  - Derived
 
 disabled_rules:
   - private_over_fileprivate
