@@ -18,8 +18,11 @@ platform :ios do
   
   #--------------------------- Unit Test Lanes ---------------------------#
   desc "Build App and run tests"
-  lane :testing do
-    scan(scheme: "#{proj[:scheme]}")
+  lane :testing do |options|
+    scan(
+      scheme: "#{proj[:scheme]}",
+      derived_data_path: options[:derived_data_path]
+    )
   end
 
   #----------------------- Utils ------------------------#

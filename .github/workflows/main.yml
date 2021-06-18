@@ -44,4 +44,9 @@ jobs:
       - name: Install Pods
         run: bundle exec pod install
       - name: Test - Fastlane tests
-        run: bundle exec fastlane testing
+        run: 
+        DERIVED_DATA_PATH=`xcodebuild -workspace "desafio.xcworkspace" -scheme "desafio" -showBuildSettings | grep OBJROOT | cut -d "=" -f 2 - | sed 's/^ *//'`
+        DERIVED_DATA_PATH=`dirname "$DERIVED_DATA_PATH"`
+        DERIVED_DATA_PATH=`dirname "$DERIVED_DATA_PATH"`
+        echo "Found derived data path: $DERIVED_DATA_PATH"
+        bundle exec fastlane testing derived_data_path:"$DERIVED_DATA_PATH"
