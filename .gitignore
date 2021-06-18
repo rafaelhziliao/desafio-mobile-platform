@@ -96,5 +96,10 @@ DerivedData/
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
+**/*.xcodeproj
+**/*.xcworkspace
+
+# Tuist
+Derived
 
 # End of https://www.toptal.com/developers/gitignore/api/xcode,macos,cocoapods,fastlane
