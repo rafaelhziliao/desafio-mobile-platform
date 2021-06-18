@@ -18,8 +18,24 @@ platform :ios do
   
   #--------------------------- Unit Test Lanes ---------------------------#
   desc "Build App and run tests"
-  lane :testing do
-    scan(scheme: "#{proj[:scheme]}")
+  lane :testing do |options|
+    scan(
+      scheme: "#{proj[:scheme]}",
+      derived_data_path: options[:derived_data_path],
+      xcargs: "CI=#{is_ci}" #skip scrip on build phases
+    )
+  end
+
+  #--------------------------- Lint Project ---------------------------#
+  desc "Lint project"
+  lane :lint do
+    swiftlint(
+      config_file: ".swiftlint.yml",
+      strict: true,
+      ignore_exit_status: false,
+      raise_if_swiftlint_error: true,
+      executable: "Pods/SwiftLint/swiftlint"
+    )
   end
 
   #----------------------- Utils ------------------------#
