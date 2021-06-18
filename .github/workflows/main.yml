@@ -39,5 +39,9 @@ jobs:
         with:
           ruby-version: 2.6.6
           bundler-cache: true
+      - name: Generate Project With Tuist
+        run: ./.tuist-bin/tuist generate
+      - name: Install Pods
+        run: bundle exec pod install
       - name: Test - Fastlane tests
         run: bundle exec fastlane testing
