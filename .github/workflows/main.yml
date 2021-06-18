@@ -43,7 +43,7 @@ jobs:
         run: ./.tuist-bin/tuist generate
       - name: Install Pods
         run: bundle exec pod install
-      - name: Test - Fastlane tests
+      - name: Run Tests
         uses: maierj/fastlane-action@v2.0.1
         with:
           lane: 'testing'
