@@ -44,6 +44,4 @@ jobs:
       - name: Install Pods
         run: bundle exec pod install
       - name: Run Tests
-        uses: maierj/fastlane-action@v2.0.1
-        with:
-          lane: 'testing'
+        run: bundle exec fastlane testing derived_data_path:"$(./Scripts/deriveddata.sh)"
