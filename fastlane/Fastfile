@@ -1,0 +1,53 @@
+def proj_name
+  "desafio"
+end
+
+def proj
+  {
+      plist: "./#{proj_name}/Info.plist",
+      xcodeproj: "./#{proj_name}.xcodeproj/",
+      workspace: "./#{proj_name}.xcworkspace",
+      scheme: "#{proj_name}",
+      app_identifier: "br.com.olx.desafio"
+  }
+end
+
+default_platform(:ios)
+
+platform :ios do
+  
+  #--------------------------- Unit Test Lanes ---------------------------#
+  desc "Build App and run tests"
+  lane :testing do |options|
+    scan(
+      scheme: "#{proj[:scheme]}",
+      derived_data_path: options[:derived_data_path],
+      xcargs: "CI=#{is_ci}" #skip scrip on build phases
+    )
+  end
+
+  #--------------------------- Lint Project ---------------------------#
+  desc "Lint project"
+  lane :lint do
+    swiftlint(
+      config_file: ".swiftlint.yml",
+      strict: true,
+      ignore_exit_status: false,
+      raise_if_swiftlint_error: true,
+      executable: "Pods/SwiftLint/swiftlint"
+    )
+  end
+
+  #----------------------- Utils ------------------------#
+  after_each() do |lane, _|
+    message = "Running lane `#{lane}` finished successfully! 🎉"
+
+    notification(message: message) unless is_ci
+  end
+
+  error() do |lane, exception, _|
+    message = "Running lane `#{lane}` finished with errors! ⛔️"
+
+    notification(message: "Exception: #{exception}", subtitle: message) unless is_ci
+  end
+end
