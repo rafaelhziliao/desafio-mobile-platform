@@ -1,9 +1,11 @@
+# 🎯 DESAFIO iOS MOBILE PLATFORM OLX
 Resumo:
 * [Requisitos](#Requisitos)
 * [Dependências](#dependências)
 * [Setup](#setup-inicial)
 * [Workflow](#workflow)
 * [Branches](#branches)
+* [CI](#continous-integration)
 * [Arquitetura](#arquitetura) - TODO
 * [Desafio](#desafio-ios-mobile-platform)
 * [Concluído](#concluido)
@@ -63,6 +65,9 @@ or
 `master` -> `fix/`
 or
 `master` -> `test/`
+
+## Continous Integration
+- Toda vez que é aberto um PR para a branch `master` o github actions irá rodar o `lint` buildar e rodar os testes
 
 ## 💥 DESAFIO iOS MOBILE PLATFORM
 Uma das principais responsabilidades do time de *mobile platform* da OLX Brasil é evoluir constantemente a arquitetura dos nossos apps.
