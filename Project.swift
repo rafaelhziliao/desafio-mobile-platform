@@ -47,6 +47,12 @@ let appResources: [FileElement] = [
     .glob(pattern: "Sources/\(appName)/**/*.storyboard")
 ]
 
+// MARK: - Dependencies
+
+let appDependencies: [TargetDependency] = [
+    .project(target: "Network", path: "Modules/Network")
+]
+
 // MARK: - Build Phases
 
 let appRunScripts: [TargetAction] = [
@@ -65,7 +71,8 @@ let targets: [Target] = [
         infoPlist: .file(path: "Sources/\(appName)/Resources/Properties/Info.plist"),
         sources: ["Sources/\(appName)/**/*.swift"],
         resources: appResources,
-        actions: appRunScripts
+        actions: appRunScripts,
+        dependencies: appDependencies
     ),
     
     Target(
