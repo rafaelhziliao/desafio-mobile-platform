@@ -3,6 +3,7 @@ import Foundation
 public protocol TreatDataResponse: TreatJSONDecode {
     func treatDataResponse<T: Decodable>(
         data: Data,
+        keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy,
         response: HTTPURLResponse,
         result: ResultHandler<T>
     )
@@ -11,12 +12,17 @@ public protocol TreatDataResponse: TreatJSONDecode {
 public extension TreatDataResponse {
     func treatDataResponse<T: Decodable>(
         data: Data,
+        keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy,
         response: HTTPURLResponse,
         result: ResultHandler<T>
     ) {
         switch response.statusCode {
         case 200...299:
-            treatJSONDecode(data: data, result: result)
+            treatJSONDecode(
+                data: data,
+                keyDecodingStrategy: keyDecodingStrategy,
+                result: result
+            )
         case 400...499:
             result(.failure(.unauthorized))
         case 500...599:

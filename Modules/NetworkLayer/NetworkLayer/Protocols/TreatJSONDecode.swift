@@ -1,23 +1,26 @@
 import Foundation
 
 public protocol TreatJSONDecode {
-    func treatJSONDecode<T: Decodable>(data: Data, result: ResultHandler<T>)
-    func decoded<T: Decodable>(_ data: Data, keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy) throws -> T
+    func treatJSONDecode<T: Decodable>(data: Data, keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy, result: ResultHandler<T>)
 }
 
 public extension TreatJSONDecode {
     func decoded<T: Decodable>(
         _ data: Data,
-        keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys
+        using keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy
     ) throws -> T {
         let decoder: JSONDecoder = .init()
         decoder.keyDecodingStrategy = keyDecodingStrategy
         return try decoder.decode(T.self, from: data)
     }
         
-    func treatJSONDecode<T: Decodable>(data: Data, result: ResultHandler<T>) {
+    func treatJSONDecode<T: Decodable>(
+        data: Data,
+        keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy,
+        result: ResultHandler<T>
+    ) {
         do {
-            let decodedData =  try decoded(data) as T
+            let decodedData =  try decoded(data, using: keyDecodingStrategy) as T
             result(.success(decodedData))
         } catch DecodingError.keyNotFound(let key, let context) {
             let description = """
