@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NetworkLayer
 
 class AdsListViewController: UIViewController {
 
@@ -16,8 +17,6 @@ class AdsListViewController: UIViewController {
         let layout = AdListViewLayout()
         return layout
     }()
-    let session = URLSession.shared
-    let url = URL(string: "https://nga.olx.com.br/api/v1.2/public/ads?lim=25&region=11&sort=relevance&state=1&lang=pt")!
 
     // MARK: outlets
 
@@ -30,28 +29,33 @@ class AdsListViewController: UIViewController {
     }
 
     // MARK: REST
-
+    
     private func getAds() {
-        let task = session.dataTask(with: url, completionHandler: { data, response, error in
-            // Check the response
-            print(response)
-            if error != nil {
-                print(error)
-                return
-            }
-            // Serialize the data into an object
-            do {
-                let json = try JSONDecoder().decode(ListAds.self, from: data! )
-                print(json)
-                self.ads = json.listAds ?? []
+        
+        let network = URLSessionProvider()
+        
+        let adsEndpoint = Advertisements(
+            limit: "25",
+            region: "11",
+            sort: "relevance",
+            state: "1",
+            language: "pt"
+        )
+        
+        network.performRequest(
+            endpoint: adsEndpoint,
+            using: .convertFromSnakeCase
+        ) { (result: Result<ListAds, NetworkError>) in
+            switch result {
+            case .success(let data):
+                self.ads = data.listAds ?? []
                 DispatchQueue.main.async {
                     self.adsCollectionView.reloadData()
                 }
-            } catch {
-                print("Error during JSON serialization: \(error.localizedDescription)")
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-        })
-        task.resume()
+        }
     }
 
 }
