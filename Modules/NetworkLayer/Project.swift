@@ -2,7 +2,7 @@ import ProjectDescription
 
 // MARK: - Constants
 
-let frameworkName = "Network"
+let frameworkName = "NetworkLayer"
 let organizationName = "OLX"
 let bundleIdPrefix = "br.com.olx."
 let deploymentVersion = "14.4"
