@@ -50,7 +50,7 @@ let appResources: [FileElement] = [
 // MARK: - Dependencies
 
 let appDependencies: [TargetDependency] = [
-    .project(target: "Network", path: "Modules/Network")
+    .project(target: "NetworkLayer", path: "Modules/NetworkLayer")
 ]
 
 // MARK: - Build Phases
