@@ -1,7 +1,7 @@
 import Foundation
 import NetworkLayer
 
-struct Advertisements: Endpoint {
+struct AdvertisementsEndpoint: Endpoint {
     var path: String { "/api/v1.2/public/ads" }
     var method: HttpMethod { .get }
     var header: Header? { nil }

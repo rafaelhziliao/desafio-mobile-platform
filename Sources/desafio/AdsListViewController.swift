@@ -12,7 +12,7 @@ class AdsListViewController: UIViewController {
 
     // MARK: properties
 
-    var ads: [Ad] = []
+    var ads: [AdDTO] = []
     lazy private var flowLayout: AdListViewLayout = {
         let layout = AdListViewLayout()
         return layout
@@ -34,7 +34,7 @@ class AdsListViewController: UIViewController {
         
         let network = URLSessionProvider()
         
-        let adsEndpoint = Advertisements(
+        let adsEndpoint = AdvertisementsEndpoint(
             limit: "25",
             region: "11",
             sort: "relevance",
@@ -45,7 +45,7 @@ class AdsListViewController: UIViewController {
         network.performRequest(
             endpoint: adsEndpoint,
             using: .convertFromSnakeCase
-        ) { (result: Result<ListAds, NetworkError>) in
+        ) { (result: Result<ListAdsDTO, NetworkError>) in
             switch result {
             case .success(let data):
                 self.ads = data.listAds ?? []
