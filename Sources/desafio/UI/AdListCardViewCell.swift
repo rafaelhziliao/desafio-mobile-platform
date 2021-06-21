@@ -27,7 +27,7 @@ class AdListCardViewCell: UICollectionViewCell {
     }
 
     // MARK: - Public
-    func configure(ad: AdDTO) {
+    func configure(ad: Ad) {
         featuredBadge.backgroundColor = UIColor(rgb: 0x6E0AD6)
         featuredLine.backgroundColor = UIColor(rgb: 0x6E0AD6)
         featuredBadge.isHidden = true

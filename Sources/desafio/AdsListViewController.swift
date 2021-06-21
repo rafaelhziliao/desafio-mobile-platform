@@ -12,11 +12,20 @@ class AdsListViewController: UIViewController {
 
     // MARK: properties
 
-    var ads: [AdDTO] = []
+    var ads: [Ad] = []
     lazy private var flowLayout: AdListViewLayout = {
         let layout = AdListViewLayout()
         return layout
     }()
+    
+    let repository: AdsRepository = APIAdsRepository(networkService: URLSessionProvider())
+    let filter = (
+        limit: "25",
+        region: "11",
+        sort: "relevance",
+        state: "1",
+        language: "pt"
+    )
 
     // MARK: outlets
 
@@ -31,21 +40,8 @@ class AdsListViewController: UIViewController {
     // MARK: REST
     
     private func getAds() {
-        
-        let network = URLSessionProvider()
-        
-        let adsEndpoint = AdvertisementsEndpoint(
-            limit: "25",
-            region: "11",
-            sort: "relevance",
-            state: "1",
-            language: "pt"
-        )
-        
-        network.performRequest(
-            endpoint: adsEndpoint,
-            using: .convertFromSnakeCase
-        ) { (result: Result<ListAdsDTO, NetworkError>) in
+        repository.getAds(limit: filter.limit, region: filter.region, sort: filter.sort, state: filter.state, language: filter.language) { result in
+            
             switch result {
             case .success(let data):
                 self.ads = data.listAds ?? []
