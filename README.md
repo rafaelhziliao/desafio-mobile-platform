@@ -29,6 +29,7 @@ Boa sorte :)
     - [x] Definicão de uma arquitetura que favorece testes
     - [x] Definição de um fluxo de trabalho e uso das branches
     - [x] Uso do [tuist](https://tuist.io/) que elimina conflitos nos arquivos de projeto `(.xcodeproj, .xcworkspace, .pbxproj)` pois não se faz necessário versiona-los, gera assets e localized strings fortemente tipadas automaticamente, todo o processo de configuração do projeto é feito através do arquivo de [Manifest](https://github.com/rafaelhziliao/desafio-mobile-platform/blob/master/Project.swift) que é escrito em `Swift`, para acessar configuração do projeto, basta executar o comando `./.tuist-bin/tuist edit` na raíz do projeto. Feitas as alterações basta salvar e rodar o script [up](https://github.com/rafaelhziliao/desafio-mobile-platform/blob/master/Scripts/up.sh) `./Scripts/up.sh`
+    - [x] Uso da ferramenta [fastlane](https://fastlane.tools/) que pode ser usada para: [code sign](https://docs.fastlane.tools/actions/match/), [buildar e rodar testes](http://docs.fastlane.tools/actions/scan/#scan), [fazer deploy para o testflight](http://docs.fastlane.tools/actions/gym/#gym), tudo isso e muito mais, localmente ou em ambientes de CI.
 * [x] Reuso
     - [x] Criação de uma camada de [Network](https://github.com/rafaelhziliao/desafio-mobile-platform/blob/master/Modules/NetworkLayer) que possui a capacidade de adicionar novos providers e ainda conta com um default que seria baseado no `URLSession`
 * [x] Testes
@@ -61,6 +62,8 @@ Boa sorte :)
 * [bundler](https://bundler.io/) - Versionador Gems do ruby como `cocoapods e fastlane`
 * [homebrew](https://brew.sh/index_pt-br) - Gerenciador de pacotes para macOS
 * [rbenv](https://github.com/rbenv/rbenv) - Gerenciador de ambientes ruby
+
+`OBS:` Como esse projeto usa o Bundler não esquecer de usar o `bundle exec` antes de usar os comandos que envolvem gems, por exemplo: `bundle exec pod install, bundle exec fastlane`
 
 ## Versão das Dependências
 > As versões podem ser encontradas nos arquivos:
