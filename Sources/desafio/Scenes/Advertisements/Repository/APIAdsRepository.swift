@@ -13,7 +13,7 @@ protocol AdsRepository {
     func getAds(limit: String, region: String, sort: String, state: String, language: String, result: @escaping ResultHandler<ListAds>)
 }
 
-class APIAdsRepository {
+final class APIAdsRepository {
     let networkService: NetworkService
     
     init(networkService: NetworkService) {

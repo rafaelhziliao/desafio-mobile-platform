@@ -8,30 +8,8 @@
 
 @testable import desafio
 import XCTest
-import NetworkLayer
 
 class APIAdsRepositoryTests: XCTestCase {
-    
-    // MARK: Spy
-    
-    class NetworkProviderSpy: NetworkService {
-        var requestResult: Result<ListAdsDTO, NetworkError> = .failure(.noJSONData)
-        
-        func performRequest<T: Decodable>(
-            endpoint: Endpoint,
-            using keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .convertFromSnakeCase,
-            result: @escaping ResultHandler<T>
-        ) {
-            
-            switch requestResult {
-            case let .success(ads):
-                //swiftlint:disable:next force_cast
-                result(.success(ads as! T))
-            case let .failure(error):
-                result(.failure(error))
-            }
-        }
-    }
     
     // MARK: Subject under test
     
@@ -61,4 +39,24 @@ class APIAdsRepositoryTests: XCTestCase {
         // Then
         XCTAssertEqual(try networkSpy.requestResult.get().listAds?.count, 25)
     }
+    
+    func test_getAds_Map_ListAdsDTO_to_ListAds() {
+        // Given
+        let responseMock = Bundle(for: type(of: self)).decode(ListAdsDTO.self, from: "ads_lim_25_region_11_sort_relevance_state_1_lang_pt.json", keyDecodingStrategy: .convertFromSnakeCase)
+        
+        var listAds: ListAds?
+        
+        networkSpy.requestResult = .success(responseMock)
+        
+        // When
+        sut.getAds(limit: "25", region: "11", sort: "relevance", state: "1", language: "pt") { result in
+            if case .success(let ads) = result {
+                listAds = ads
+            }
+        }
+        
+        // Then
+        XCTAssertEqual(try networkSpy.requestResult.get().listAds?.count, listAds?.listAds?.count)
+    }
+
 }
