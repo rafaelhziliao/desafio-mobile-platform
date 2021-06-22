@@ -53,7 +53,7 @@ class AdListCardViewCell: UICollectionViewCell {
         self.addRoundedCorners(withColor: UIColor.white, width: 0.0, radius: 5.0)
     }
 
-    private func getLocation(_ location: AdLocation) -> String {
+    private func getLocation(_ location: AdLocationDTO) -> String {
         if location.key == "neighbourhood" {
             return location.label ?? ""
         }

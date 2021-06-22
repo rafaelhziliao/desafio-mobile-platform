@@ -3,6 +3,7 @@ import Foundation
 public protocol RequestHandleResponsable: TreatDataResponse {
     func handleResponse<T: Decodable>(
         data: Data?,
+        keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy,
         response: HTTPURLResponse?,
         error: Error?,
         result: ResultHandler<T>
@@ -11,7 +12,9 @@ public protocol RequestHandleResponsable: TreatDataResponse {
 
 public extension RequestHandleResponsable {
     func handleResponse<T: Decodable>(
-        data: Data?, response: HTTPURLResponse?,
+        data: Data?,
+        keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy,
+        response: HTTPURLResponse?,
         error: Error?,
         result: ResultHandler<T>
     ) {
@@ -26,7 +29,12 @@ public extension RequestHandleResponsable {
             return result(.failure(.noJSONData))
         }
 
-        treatDataResponse(data: data, response: response, result: result)
+        treatDataResponse(
+            data: data,
+            keyDecodingStrategy: keyDecodingStrategy,
+            response: response,
+            result: result
+        )
     }
 
 }

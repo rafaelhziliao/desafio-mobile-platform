@@ -47,6 +47,10 @@ let appResources: [FileElement] = [
     .glob(pattern: "Sources/\(appName)/**/*.storyboard")
 ]
 
+let testResources: [FileElement] = [
+    .glob(pattern: "Sources/\(appName)Tests/Resources/**/*.json")
+]
+
 // MARK: - Dependencies
 
 let appDependencies: [TargetDependency] = [
@@ -82,6 +86,7 @@ let targets: [Target] = [
         bundleId: "\(bundleIdPrefix)\(appName)Tests",
         infoPlist: .file(path: "Sources/\(appName)Tests/Info.plist"),
         sources: ["Sources/\(appName)Tests/**"],
+        resources: testResources,
         dependencies: [.target(name: appName)]
     ),
     
