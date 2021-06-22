@@ -47,7 +47,7 @@ Boa sorte :)
 * [Setup](#setup-inicial)
 * [Workflow](#workflow)
 * [Branches](#branches)
-* [Arquitetura](#arquitetura) - TODO
+* [Arquitetura](#arquitetura)
 * [CI](#continous-integration)
 
 ## Requisitos
