@@ -1,14 +1,54 @@
 # 🎯 DESAFIO iOS MOBILE PLATFORM OLX
-Resumo:
+
+Uma das principais responsabilidades do time de *mobile platform* da OLX Brasil é evoluir constantemente a arquitetura dos nossos apps.
+
+Para isto, as pessoas engenheiras da nossa squad precisam dominar as melhores práticas de arquitetura de software (ex: modularização e desacoplamento), assim como garantir a qualidade e segurança.
+
+Desafio:
+
+Faça um fork desse repo e refatore o aplicativo para uma nova arquitetura que garanta:
+
+* Escalabilidade, ou seja, permita que novas features sejam adicionadas sem necessidade de alterar o código existente
+* Reuso, ou seja, permitir que partes do app possam ser reaproveitadas em outros apps  
+* Testabilidade - Aqui gostaríamos de analisar sua implementação de testes unitários e de UI 
+
+Você poderá ganhar pontos extras se (totalmente opcional):
+
+* Implementar automação de CI/CD
+* Habilitar ferramenta de análise estática de seu código  
+
+Dica:
+
+* Como somos um time de plataforma, estamos mais interessados em analisar seus skills em arquitetura, portanto você não precisa evoluir a UI (usabilidade / telas / interface)
+* Para que possamos analisar o seu processo de desenvolvimento, não desenvolva tudo em uma única branch ou em um único commit
+
+Boa sorte :)
+
+# ✅ Concluído
+* [x] Escalabilidade
+    - [x] Definicão de uma arquitetura que favorece testes
+    - [x] Definição de um fluxo de trabalho e uso das branches
+    - [x] Uso do [tuist](https://tuist.io/) que elimina conflitos nos arquivos de projeto `(.xcodeproj, .xcworkspace, .pbxproj)` pois não se faz necessário versiona-los, gera assets e localized strings fortemente tipadas automaticamente, todo o processo de configuração do projeto é feito através do arquivo de [Manifest](https://github.com/rafaelhziliao/desafio-mobile-platform/blob/master/Project.swift) que é escrito em `Swift`, para acessar configuração do projeto, basta executar o comando `./.tuist-bin/tuist edit` na raíz do projeto. Feitas as alterações basta salvar e rodar o script [up](https://github.com/rafaelhziliao/desafio-mobile-platform/blob/master/Scripts/up.sh) `./Scripts/up.sh`
+* [x] Reuso
+    - [x] Criação de uma camada de [Network](https://github.com/rafaelhziliao/desafio-mobile-platform/blob/master/Modules/NetworkLayer) que possui a capacidade de adicionar novos providers e ainda conta com um default que seria baseado no `URLSession`
+* [x] Testes
+    - [x] Testes unitários nas camadas de Repository, Interactor e Presenter
+* [x] Implementar automação de CI/CD
+* [x] Habilitar ferramenta de análise estática de seu código
+
+# [] Ficou faltando 🤷‍♂️
+* [] Testes de UI
+* [] Criar um framework de Design System
+* [] Criar um framework pra abrigar coisas mais comuns um CoreKit ou algo do tipo
+
+# Resumo:
 * [Requisitos](#Requisitos)
 * [Dependências](#dependências)
 * [Setup](#setup-inicial)
 * [Workflow](#workflow)
 * [Branches](#branches)
-* [CI](#continous-integration)
 * [Arquitetura](#arquitetura) - TODO
-* [Desafio](#desafio-ios-mobile-platform)
-* [Concluído](#concluido)
+* [CI](#continous-integration)
 
 ## Requisitos
 * Xcode 12.4
@@ -66,35 +106,16 @@ or
 or
 `master` -> `test/`
 
+## Arquitetura
+<p align="center">
+  <img src=".github/olx_challenge_architecture.png" align="center">
+</p>
+
+[**VIP (Clean Swift)**](https://clean-swift.com/clean-swift-ios-architecture/vip-cycle/)
+
+[**Repository e DTOs**](https://betterprogramming.pub/why-model-objects-shouldnt-implement-swift-s-decodable-or-encodable-protocols-1249cb44d4b3)
+
+[**DomainModel**](https://martinfowler.com/eaaCatalog/domainModel.html)
+
 ## Continous Integration
 - Toda vez que é aberto um PR para a branch `master` o github actions irá rodar o `lint` buildar e rodar os testes
-
-## 💥 DESAFIO iOS MOBILE PLATFORM
-Uma das principais responsabilidades do time de *mobile platform* da OLX Brasil é evoluir constantemente a arquitetura dos nossos apps.
-
-Para isto, as pessoas engenheiras da nossa squad precisam dominar as melhores práticas de arquitetura de software (ex: modularização e desacoplamento), assim como garantir a qualidade e segurança.
-
-Desafio:
-
-Faça um fork desse repo e refatore o aplicativo para uma nova arquitetura que garanta:
-
-* Escalabilidade, ou seja, permita que novas features sejam adicionadas sem necessidade de alterar o código existente
-* Reuso, ou seja, permitir que partes do app possam ser reaproveitadas em outros apps  
-* Testabilidade - Aqui gostaríamos de analisar sua implementação de testes unitários e de UI 
-
-Você poderá ganhar pontos extras se (totalmente opcional):
-
-* Implementar automação de CI/CD
-* Habilitar ferramenta de análise estática de seu código  
-
-Dica:
-
-* Como somos um time de plataforma, estamos mais interessados em analisar seus skills em arquitetura, portanto você não precisa evoluir a UI (usabilidade / telas / interface)
-* Para que possamos analisar o seu processo de desenvolvimento, não desenvolva tudo em uma única branch ou em um único commit
-
-Boa sorte :)
-
-## ✅ Concluído
-* [x] Implementar automação de CI/CD
-* [x] Habilitar ferramenta de análise estática de seu código  
-
