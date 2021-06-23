@@ -13,7 +13,7 @@ public extension TreatJSONDecode {
         decoder.keyDecodingStrategy = keyDecodingStrategy
         return try decoder.decode(T.self, from: data)
     }
-        
+
     func treatJSONDecode<T: Decodable>(
         data: Data,
         keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy,

@@ -11,13 +11,13 @@ import NetworkLayer
 
 final class AdsListViewControllerFactory {
     class func make(with dataSource: AdsListRepository = APIAdsListRepository(networkService: URLSessionProvider())) -> AdsListViewController {
-        
+
         var presenter: AdsListPresentationLogic = AdsListPresenter()
         let interactor: AdsListBusinessLogic = AdsListInteractor(repository: dataSource, presenter: presenter)
         let viewController: AdsListViewController = AdsListViewController(interactor: interactor)
-        
+
         presenter.viewController = viewController
-        
+
         return viewController
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AdsListDisplayLogic: AnyObject {
-    func displayAdsList(_ ads: [Ad])
+    func displayAdsList(_ ads: [Ads])
     func displayErrorOnLoadAdsList(_ error: String)
 }
 
@@ -16,12 +16,12 @@ final class AdsListViewController: UIViewController {
 
     // MARK: properties
 
-    var ads: [Ad] = [] {
+    var ads: [Ads] = [] {
         didSet {
             collectionView.reloadData()
         }
     }
-    
+
     lazy var collectionView: UICollectionView = {
         let flowLayout = AdListViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
@@ -34,9 +34,9 @@ final class AdsListViewController: UIViewController {
         collectionView.registerNib(AdListCardViewCell.self)
         return collectionView
     }()
-    
+
     var interactor: AdsListBusinessLogic?
-    
+
     // Supposing this data is comming from user interaction
     let filter = (
         limit: "25",
@@ -45,7 +45,7 @@ final class AdsListViewController: UIViewController {
         state: "1",
         language: "pt"
     )
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         buildView()
@@ -55,7 +55,7 @@ final class AdsListViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-  
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -64,7 +64,7 @@ final class AdsListViewController: UIViewController {
         self.init(nibName: nil, bundle: nil)
         self.interactor = interactor
     }
-    
+
     private func getAds() {
         interactor?.getAds(
             limit: filter.limit,
@@ -82,14 +82,14 @@ extension AdsListViewController: ViewCoding {
     func buildViewHierarchy() {
         view.addSubview(collectionView)
     }
-    
+
     func setupConstraints() {
         collectionView.safeAreaTop(safeAreaView: view)
         collectionView.rightConstraint(parentView: view)
         collectionView.leftConstraint(parentView: view)
         collectionView.bottomConstraint(parentView: view)
     }
-    
+
     func additionalSetup() {
         view.backgroundColor = .systemBackground
     }
@@ -98,10 +98,10 @@ extension AdsListViewController: ViewCoding {
 // MARK: Display Logic
 
 extension AdsListViewController: AdsListDisplayLogic {
-    func displayAdsList(_ ads: [Ad]) {
+    func displayAdsList(_ ads: [Ads]) {
         self.ads = ads
     }
-    
+
     func displayErrorOnLoadAdsList(_ error: String) {
         print(error)
     }
@@ -116,7 +116,7 @@ extension AdsListViewController: UICollectionViewDelegate, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AdListCardViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.configure(ad: ads[indexPath.row])
+        cell.configure(ads: ads[indexPath.row])
         return cell
     }
 }

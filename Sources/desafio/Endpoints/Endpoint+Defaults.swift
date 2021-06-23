@@ -13,7 +13,7 @@ extension Endpoint {
     var scheme: String {
         return "https"
     }
-    
+
     var host: String {
         return "nga.olx.com.br"
     }

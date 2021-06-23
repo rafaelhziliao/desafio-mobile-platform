@@ -21,6 +21,6 @@ extension ViewCoding {
         setupConstraints()
         additionalSetup()
     }
-    
+
     func additionalSetup() {}
 }

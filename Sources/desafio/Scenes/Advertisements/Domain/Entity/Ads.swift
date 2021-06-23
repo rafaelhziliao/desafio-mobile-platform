@@ -1,5 +1,5 @@
 //
-//  Ad.swift
+//  Ads.swift
 //  desafio
 //
 //  Created by rafael ziliao on 21/06/21.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Ad {
-    let ad: AdDetail
+struct Ads {
+    let adDetail: AdDetail
 }

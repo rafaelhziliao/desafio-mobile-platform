@@ -17,7 +17,7 @@ public extension UICollectionView {
         }
         return cell
     }
-    
+
     func registerNib<T: UICollectionViewCell>(_: T.Type) where T: Identifiable {
         let bundle = Bundle(for: T.self)
         let nib = UINib(nibName: T.identifier, bundle: bundle)

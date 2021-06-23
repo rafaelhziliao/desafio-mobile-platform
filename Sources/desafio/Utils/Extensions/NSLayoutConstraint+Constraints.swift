@@ -9,9 +9,9 @@
 import UIKit
 
 public extension NSLayoutConstraint {
-    
+
     static func left(firstView: UIView, secondView: UIView, constant: CGFloat = .zero) -> NSLayoutConstraint {
-        
+
         return NSLayoutConstraint(
             item: firstView,
             attribute: .left,
@@ -22,9 +22,9 @@ public extension NSLayoutConstraint {
             constant: constant
         )
     }
-    
+
     static func right(firstView: UIView, secondView: UIView, constant: CGFloat = .zero) -> NSLayoutConstraint {
-        
+
         return NSLayoutConstraint(
             item: firstView,
             attribute: .right,
@@ -35,9 +35,9 @@ public extension NSLayoutConstraint {
             constant: constant
         )
     }
-    
+
     static func top(firstView: UIView, secondView: UIView, constant: CGFloat = .zero) -> NSLayoutConstraint {
-        
+
         return NSLayoutConstraint(
             item: firstView,
             attribute: .top,
@@ -48,9 +48,9 @@ public extension NSLayoutConstraint {
             constant: constant
         )
     }
-    
+
     static func bottom(firstView: UIView, secondView: UIView, constant: CGFloat = .zero) -> NSLayoutConstraint {
-        
+
         return NSLayoutConstraint(
             item: firstView,
             attribute: .bottom,
@@ -61,14 +61,14 @@ public extension NSLayoutConstraint {
             constant: constant
         )
     }
-    
+
     static func safeAreaTop(
         safeAreaView: UIView,
         otherView: UIView,
         constant: CGFloat = .zero,
         statusBar: Bool = false
     ) -> NSLayoutConstraint {
-        
+
         if #available(iOS 11.0, *) {
             return safeAreaView
                 .safeAreaLayoutGuide

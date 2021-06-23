@@ -10,7 +10,7 @@ import Foundation
 
 struct ListAdsDTOMapper {
     static func map(_ dto: ListAdsDTO) -> ListAds {
-        let ads: [Ad]? = dto.listAds?.map{ Ad(ad: AdDetailDTOMapper.map($0.ad)) }
+        let ads: [Ads]? = dto.listAds?.map { Ads(adDetail: AdDetailDTOMapper.map($0.adDetail)) }
         return ListAds(listAds: ads)
     }
 }
