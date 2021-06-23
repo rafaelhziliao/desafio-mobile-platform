@@ -9,11 +9,11 @@
 import Foundation
 import NetworkLayer
 
-protocol AdsRepository {
+protocol AdsListRepository {
     func getAds(limit: String, region: String, sort: String, state: String, language: String, result: @escaping ResultHandler<ListAds>)
 }
 
-final class APIAdsRepository {
+final class APIAdsListRepository {
     let networkService: NetworkService
     
     init(networkService: NetworkService) {
@@ -42,7 +42,7 @@ final class APIAdsRepository {
     }
 }
 
-extension APIAdsRepository: AdsRepository {
+extension APIAdsListRepository: AdsListRepository {
     func getAds(
         limit: String = "",
         region: String = "",

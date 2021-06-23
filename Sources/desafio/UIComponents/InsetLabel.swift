@@ -5,7 +5,6 @@
 //  Created by Fernando Luiz Goulart on 14/04/21.
 //
 
-import Foundation
 import UIKit
 
 class InsetLabel: UILabel {
@@ -13,7 +12,7 @@ class InsetLabel: UILabel {
 
     func setEdgeInset(edgeInset: UIEdgeInsets) {
         self.edgeInset = edgeInset
-        self.invalidateIntrinsicContentSize()
+        invalidateIntrinsicContentSize()
     }
 
     override func drawText(in rect: CGRect) {

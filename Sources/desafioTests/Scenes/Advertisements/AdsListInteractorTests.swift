@@ -1,5 +1,5 @@
 //
-//  AdsInteractorTests.swift
+//  AdsListInteractorTests.swift
 //  desafioTests
 //
 //  Created by rafael zilao on 22/06/21.
@@ -10,15 +10,16 @@
 import XCTest
 import NetworkLayer
 
-class AdsInteractorTests: XCTestCase {
+class AdsListInteractorTests: XCTestCase {
     
     // MARK: Spy
-    class APIAdsRepositorySpy: AdsRepository {
+    class APIAdsListRepositorySpy: AdsListRepository {
         var requestResult: Result<ListAds, NetworkError> = .failure(.noJSONData)
         var listAdsMock: ListAds {
             let listAdsDTO = Bundle(for: type(of: self)).decode(
                 ListAdsDTO.self,
-                from: "ads_lim_25_region_11_sort_relevance_state_1_lang_pt.json", keyDecodingStrategy: .convertFromSnakeCase
+                from: "ads_lim_25_region_11_sort_relevance_state_1_lang_pt.json",
+                keyDecodingStrategy: .convertFromSnakeCase
             )
             
             return ListAdsDTOMapper.map(listAdsDTO)
@@ -29,7 +30,7 @@ class AdsInteractorTests: XCTestCase {
         }
     }
     
-    class AdsPresenterSpy: AdsPresentationLogic {
+    class AdsListPresenterSpy: AdsListPresentationLogic {
         var presentAdsListCalled = false
         var presentErrorOnLoadAdsListCalled = false
 
@@ -44,15 +45,15 @@ class AdsInteractorTests: XCTestCase {
     
     // MARK: Subject under test
     
-    var repositorySpy: APIAdsRepositorySpy = APIAdsRepositorySpy()
-    var presenterSpy: AdsPresenterSpy = AdsPresenterSpy()
-    var sut: AdsInteractor!
+    var repositorySpy: APIAdsListRepositorySpy = APIAdsListRepositorySpy()
+    var presenterSpy: AdsListPresenterSpy = AdsListPresenterSpy()
+    var sut: AdsListInteractor!
     
     // MARK: Test lifecycle
 
     override func setUp() {
         super.setUp()
-        sut = AdsInteractor(repository: repositorySpy, presenter: presenterSpy)
+        sut = AdsListInteractor(repository: repositorySpy, presenter: presenterSpy)
     }
 
     override func tearDown() {

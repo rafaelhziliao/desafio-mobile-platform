@@ -1,5 +1,5 @@
 //
-//  AdsPresenter.swift
+//  AdsListPresenter.swift
 //  desafio
 //
 //  Created by rafael zilao on 22/06/21.
@@ -8,16 +8,16 @@
 
 import Foundation
 
-protocol AdsPresentationLogic {
+protocol AdsListPresentationLogic {
     func presentAdsList(_ ads: ListAds)
     func presentErrorOnLoadAdsList(_ error: String)
 }
 
-final class AdsPresenter {
+final class AdsListPresenter {
     
 }
 
-extension AdsPresenter: AdsPresentationLogic {
+extension AdsListPresenter: AdsListPresentationLogic {
     func presentAdsList(_ ads: ListAds) {
         print("Display ads in viewcontroller: \(ads)")
     }

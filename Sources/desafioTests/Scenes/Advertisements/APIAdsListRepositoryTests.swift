@@ -9,18 +9,18 @@
 @testable import desafio
 import XCTest
 
-class APIAdsRepositoryTests: XCTestCase {
+class APIAdsListRepositoryTests: XCTestCase {
     
     // MARK: Subject under test
     
     var networkSpy: NetworkProviderSpy = NetworkProviderSpy()
-    var sut: APIAdsRepository!
+    var sut: APIAdsListRepository!
     
     // MARK: Test lifecycle
 
     override func setUp() {
         super.setUp()
-        sut = APIAdsRepository(networkService: networkSpy)
+        sut = APIAdsListRepository(networkService: networkSpy)
     }
 
     override func tearDown() {

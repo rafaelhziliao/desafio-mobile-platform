@@ -5,10 +5,9 @@
 //  Created by Fernando Luiz Goulart on 13/04/21.
 //
 
-import Foundation
 import UIKit
 
-class AdListViewLayout: UICollectionViewFlowLayout {
+final class AdListViewLayout: UICollectionViewFlowLayout {
 
     let cardCellHeight: CGFloat = 128.0
 
