@@ -10,16 +10,17 @@ import Foundation
 import NetworkLayer
 
 protocol AdsListRepository {
+    // swiftlint:disable:next function_parameter_count
     func getAds(limit: String, region: String, sort: String, state: String, language: String, result: @escaping ResultHandler<ListAds>)
 }
 
 final class APIAdsListRepository {
     let networkService: NetworkService
-    
+
     init(networkService: NetworkService) {
         self.networkService = networkService
     }
-    
+
     private func makeAdvertisementEndpoint(
         limit: String = "",
         region: String = "",
@@ -27,7 +28,7 @@ final class APIAdsListRepository {
         state: String = "",
         language: String = ""
     ) -> AdvertisementsEndpoint {
-        
+
         return AdvertisementsEndpoint(
             limit: limit,
             region: region,
@@ -36,7 +37,7 @@ final class APIAdsListRepository {
             language: language
         )
     }
-    
+
     private func makeListAds(from dto: ListAdsDTO) -> ListAds {
         return ListAdsDTOMapper.map(dto)
     }
@@ -58,9 +59,9 @@ extension APIAdsListRepository: AdsListRepository {
             state: state,
             language: language
         )
-        
+
         networkService.performRequest(endpoint: endpoint, using: .convertFromSnakeCase) { (value: Result<ListAdsDTO, NetworkError>) in
-            
+
             switch value {
             case .success(let data):
                 let listAds = self.makeListAds(from: data)

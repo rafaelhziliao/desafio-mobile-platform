@@ -11,7 +11,7 @@ import Foundation
 struct AdThumbnailDTOMapper {
     static func map(_ dto: AdThumbnailDTO?) -> AdThumbnail? {
         guard let dto = dto else { return nil }
-        
+
         return AdThumbnail(
             height: dto.height,
             width: dto.width,

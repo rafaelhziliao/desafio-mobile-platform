@@ -12,16 +12,16 @@ import NetworkLayer
 
 class NetworkProviderSpy: NetworkService {
     var requestResult: Result<ListAdsDTO, NetworkError> = .failure(.noJSONData)
-    
+
     func performRequest<T: Decodable>(
         endpoint: Endpoint,
         using keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .convertFromSnakeCase,
         result: @escaping ResultHandler<T>
     ) {
-        
+
         switch requestResult {
         case let .success(ads):
-            //swiftlint:disable:next force_cast
+            // swiftlint:disable:next force_cast
             result(.success(ads as! T))
         case let .failure(error):
             result(.failure(error))

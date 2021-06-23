@@ -6,7 +6,7 @@ struct AdvertisementsEndpoint: Endpoint {
     var method: HttpMethod { .get }
     var header: Header? { nil }
     var parameters: Parameters? {
-        ["lim" : limit,
+        ["lim": limit,
          "region": region,
          "sort": sort,
          "state": state,
@@ -14,7 +14,7 @@ struct AdvertisementsEndpoint: Endpoint {
         ]
     }
     var body: Body? { nil }
-    
+
     var limit: String = ""
     var region: String = ""
     var sort: String = ""

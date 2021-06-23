@@ -9,5 +9,5 @@
 import Foundation
 
 struct AdDTO: Decodable {
-    let ad: AdDetailDTO
+    let adDetail: AdDetailDTO
 }

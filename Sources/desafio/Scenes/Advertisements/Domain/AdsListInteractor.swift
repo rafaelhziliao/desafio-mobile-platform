@@ -15,7 +15,7 @@ protocol AdsListBusinessLogic {
 final class AdsListInteractor {
     let repository: AdsListRepository
     let presenter: AdsListPresentationLogic
-    
+
     init(repository: AdsListRepository, presenter: AdsListPresentationLogic) {
         self.repository = repository
         self.presenter = presenter
@@ -24,9 +24,9 @@ final class AdsListInteractor {
 
 extension AdsListInteractor: AdsListBusinessLogic {
     func getAds(limit: String, region: String, sort: String, state: String, language: String) {
-        
+
         repository.getAds(limit: limit, region: region, sort: sort, state: state, language: language) { [weak self] response in
-            
+
             switch response {
             case .success(let ads):
                 self?.presenter.presentAdsList(ads.listAds)

@@ -9,5 +9,5 @@
 import Foundation
 
 struct ListAds {
-    let listAds: [Ad]?
+    let listAds: [Ads]?
 }

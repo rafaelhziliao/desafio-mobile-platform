@@ -10,7 +10,7 @@ import Foundation
 
 protocol AdsListPresentationLogic {
     var viewController: AdsListDisplayLogic? { get set }
-    func presentAdsList(_ ads: [Ad]?)
+    func presentAdsList(_ ads: [Ads]?)
     func presentErrorOnLoadAdsList(_ error: String)
 }
 
@@ -19,10 +19,10 @@ final class AdsListPresenter {
 }
 
 extension AdsListPresenter: AdsListPresentationLogic {
-    func presentAdsList(_ ads: [Ad]?) {
+    func presentAdsList(_ ads: [Ads]?) {
         viewController?.displayAdsList(ads ?? [])
     }
-    
+
     func presentErrorOnLoadAdsList(_ error: String) {
         viewController?.displayErrorOnLoadAdsList(error)
     }

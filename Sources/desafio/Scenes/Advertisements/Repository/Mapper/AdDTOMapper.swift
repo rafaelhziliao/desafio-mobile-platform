@@ -9,7 +9,7 @@
 import Foundation
 
 struct AdDTOMapper {
-    static func map(_ dto: AdDTO) -> Ad {
-        return Ad(ad: AdDetailDTOMapper.map(dto.ad))
+    static func map(_ dto: AdDTO) -> Ads {
+        return Ads(adDetail: AdDetailDTOMapper.map(dto.adDetail))
     }
 }

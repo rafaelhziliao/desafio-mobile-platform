@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Ad {
-    let ad: AdDetail
+struct Ads {
+    let adDetail: AdDetail
 }

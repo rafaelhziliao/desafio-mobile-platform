@@ -12,7 +12,7 @@ public final class URLSessionProvider: NetworkService, RequestHandleResponsable 
         using keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys,
         result: @escaping ResultHandler<T>
     ) {
-        
+
         guard let request = URLRequest(endpoint: endpoint) else { preconditionFailure("Fail on create request") }
 
         let task = session.dataTask(with: request) { data, response, error in

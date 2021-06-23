@@ -18,10 +18,11 @@ class APIAdsListRepositorySpy: AdsListRepository {
             from: "ads_lim_25_region_11_sort_relevance_state_1_lang_pt.json",
             keyDecodingStrategy: .convertFromSnakeCase
         )
-        
+
         return ListAdsDTOMapper.map(listAdsDTO)
     }
 
+    // swiftlint:disable:next function_parameter_count
     func getAds(limit: String, region: String, sort: String, state: String, language: String, result: @escaping ResultHandler<ListAds>) {
         result(requestResult)
     }

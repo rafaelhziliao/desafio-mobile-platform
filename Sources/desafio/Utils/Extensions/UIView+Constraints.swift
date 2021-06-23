@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UIView {
-    
+
     func safeAreaTop(safeAreaView: UIView, constant: CGFloat = .zero, statusBar: Bool = false) {
         let constraint: NSLayoutConstraint = .safeAreaTop(
             safeAreaView: safeAreaView,
@@ -19,7 +19,7 @@ public extension UIView {
         )
         constraint.isActive = true
     }
-    
+
     func bottomConstraint(parentView: UIView, constant: CGFloat = .zero) {
         let constraint: NSLayoutConstraint = .bottom(
             firstView: self,
@@ -28,7 +28,7 @@ public extension UIView {
         )
         constraint.isActive = true
     }
-    
+
     func rightConstraint(parentView: UIView, constant: CGFloat = .zero) {
         let constraint: NSLayoutConstraint = .right(
             firstView: self,
@@ -37,7 +37,7 @@ public extension UIView {
         )
         constraint.isActive = true
     }
-    
+
     func leftConstraint(parentView: UIView, constant: CGFloat = .zero) {
         let constraint: NSLayoutConstraint = .left(
             firstView: self,
