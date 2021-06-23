@@ -1,5 +1,5 @@
 //
-//  Ad.swift
+//  Ads.swift
 //  desafio
 //
 //  Created by rafael ziliao on 21/06/21.

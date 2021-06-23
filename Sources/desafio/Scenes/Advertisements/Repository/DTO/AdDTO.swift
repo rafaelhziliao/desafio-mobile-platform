@@ -10,4 +10,8 @@ import Foundation
 
 struct AdDTO: Decodable {
     let adDetail: AdDetailDTO
+
+    enum CodingKeys: String, CodingKey {
+        case adDetail = "ad"
+    }
 }
