@@ -52,7 +52,7 @@ let targets: [Target] = [
         resources: [],
         dependencies: []
     ),
-    
+
     Target(
         name: "\(frameworkName)Tests",
         platform: .iOS,
@@ -60,7 +60,7 @@ let targets: [Target] = [
         bundleId: "\(bundleIdPrefix)\(frameworkName)Tests",
         infoPlist: .default,
         sources: ["\(frameworkName)Tests/**"],
-        resources:[],
+        resources: [],
         dependencies: [.target(name: frameworkName)]
     )
 ]

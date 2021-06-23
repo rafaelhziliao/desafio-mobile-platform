@@ -7,7 +7,12 @@ public final class URLSessionProvider: NetworkService, RequestHandleResponsable 
         session = URLSession(configuration: URLSession.shared.configuration)
     }
 
-    public func performRequest<T: Decodable>(endpoint: Endpoint, result: @escaping ResultHandler<T>) {
+    public func performRequest<T: Decodable>(
+        endpoint: Endpoint,
+        using keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys,
+        result: @escaping ResultHandler<T>
+    ) {
+
         guard let request = URLRequest(endpoint: endpoint) else { preconditionFailure("Fail on create request") }
 
         let task = session.dataTask(with: request) { data, response, error in
@@ -16,6 +21,7 @@ public final class URLSessionProvider: NetworkService, RequestHandleResponsable 
 
                 self.handleResponse(
                     data: data,
+                    keyDecodingStrategy: keyDecodingStrategy,
                     response: response,
                     error: error,
                     result: result
