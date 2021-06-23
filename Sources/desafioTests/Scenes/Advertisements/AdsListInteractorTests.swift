@@ -31,10 +31,11 @@ class AdsListInteractorTests: XCTestCase {
     }
     
     class AdsListPresenterSpy: AdsListPresentationLogic {
+        weak var viewController: AdsListDisplayLogic?
         var presentAdsListCalled = false
         var presentErrorOnLoadAdsListCalled = false
 
-        func presentAdsList(_ ads: ListAds) {
+        func presentAdsList(_ ads: [Ad]?) {
             presentAdsListCalled = true
         }
         

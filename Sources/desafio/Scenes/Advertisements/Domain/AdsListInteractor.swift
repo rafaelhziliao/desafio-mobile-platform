@@ -28,7 +28,7 @@ extension AdsListInteractor: AdsListBusinessLogic {
             
             switch response {
             case .success(let ads):
-                self?.presenter.presentAdsList(ads)
+                self?.presenter.presentAdsList(ads.listAds)
             case .failure(let error):
                 self?.presenter.presentErrorOnLoadAdsList(error.localizedDescription)
             }
