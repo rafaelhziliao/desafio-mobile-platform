@@ -7,10 +7,7 @@
 
 import UIKit
 
-class AdListCardViewCell: UICollectionViewCell {
-
-    static var nibName = "AdListCardViewCell"
-    static var reuseIdentifier = "AdListCardViewCellIdentifier"
+class AdListCardViewCell: UICollectionViewCell, Identifiable {
 
     // MARK: - IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
@@ -25,7 +22,7 @@ class AdListCardViewCell: UICollectionViewCell {
         super.awakeFromNib()
         setupBorder()
     }
-
+    
     // MARK: - Public
     func configure(ad: Ad) {
         featuredBadge.backgroundColor = UIColor(rgb: 0x6E0AD6)
