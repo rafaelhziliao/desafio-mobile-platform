@@ -9,11 +9,11 @@
 import UIKit
 import NetworkLayer
 
-class AdsListViewControllerFactory {
-    class func make(with dataSource: AdsRepository = APIAdsRepository(networkService: URLSessionProvider())) -> AdsListViewController {
+final class AdsListViewControllerFactory {
+    class func make(with dataSource: AdsListRepository = APIAdsListRepository(networkService: URLSessionProvider())) -> AdsListViewController {
         
-        let presenter: AdsPresentationLogic = AdsPresenter()
-        let interactor: AdsBusinessLogic = AdsInteractor(repository: dataSource, presenter: presenter)
+        let presenter: AdsListPresentationLogic = AdsListPresenter()
+        let interactor: AdsListBusinessLogic = AdsListInteractor(repository: dataSource, presenter: presenter)
         
         return AdsListViewController(interactor: interactor)
     }

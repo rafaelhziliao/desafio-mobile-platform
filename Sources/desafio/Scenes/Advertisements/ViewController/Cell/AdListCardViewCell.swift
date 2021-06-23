@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AdListCardViewCell: UICollectionViewCell, Identifiable {
+final class AdListCardViewCell: UICollectionViewCell, Identifiable {
 
     // MARK: - IBOutlets
     @IBOutlet weak var titleLabel: UILabel!

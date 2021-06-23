@@ -32,8 +32,8 @@ final class AdsListViewController: UIViewController {
         return collectionView
     }()
     
-    var interactor: AdsBusinessLogic?
-    let repository: AdsRepository = APIAdsRepository(networkService: URLSessionProvider())
+    var interactor: AdsListBusinessLogic?
+    let repository: AdsListRepository = APIAdsListRepository(networkService: URLSessionProvider())
     let filter = (
         limit: "25",
         region: "11",
@@ -56,7 +56,7 @@ final class AdsListViewController: UIViewController {
         super.init(coder: aDecoder)
     }
 
-    convenience init(interactor: AdsBusinessLogic?) {
+    convenience init(interactor: AdsListBusinessLogic?) {
         self.init(nibName: nil, bundle: nil)
         self.interactor = interactor
     }

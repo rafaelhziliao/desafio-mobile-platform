@@ -1,5 +1,5 @@
 //
-//  AdsInteractor.swift
+//  AdsListInteractor.swift
 //  desafio
 //
 //  Created by rafael zilao on 22/06/21.
@@ -8,21 +8,21 @@
 
 import Foundation
 
-protocol AdsBusinessLogic {
+protocol AdsListBusinessLogic {
     func getAds(limit: String, region: String, sort: String, state: String, language: String)
 }
 
-final class AdsInteractor {
-    let repository: AdsRepository
-    let presenter: AdsPresentationLogic
+final class AdsListInteractor {
+    let repository: AdsListRepository
+    let presenter: AdsListPresentationLogic
     
-    init(repository: AdsRepository, presenter: AdsPresentationLogic) {
+    init(repository: AdsListRepository, presenter: AdsListPresentationLogic) {
         self.repository = repository
         self.presenter = presenter
     }
 }
 
-extension AdsInteractor: AdsBusinessLogic {
+extension AdsListInteractor: AdsListBusinessLogic {
     func getAds(limit: String, region: String, sort: String, state: String, language: String) {
         repository.getAds(limit: limit, region: region, sort: sort, state: state, language: language) { [weak self] response in
             
