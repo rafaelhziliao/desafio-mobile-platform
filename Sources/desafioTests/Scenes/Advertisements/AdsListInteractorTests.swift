@@ -12,24 +12,7 @@ import NetworkLayer
 
 class AdsListInteractorTests: XCTestCase {
     
-    // MARK: Spy
-    class APIAdsListRepositorySpy: AdsListRepository {
-        var requestResult: Result<ListAds, NetworkError> = .failure(.noJSONData)
-        var listAdsMock: ListAds {
-            let listAdsDTO = Bundle(for: type(of: self)).decode(
-                ListAdsDTO.self,
-                from: "ads_lim_25_region_11_sort_relevance_state_1_lang_pt.json",
-                keyDecodingStrategy: .convertFromSnakeCase
-            )
-            
-            return ListAdsDTOMapper.map(listAdsDTO)
-        }
-
-        func getAds(limit: String, region: String, sort: String, state: String, language: String, result: @escaping ResultHandler<ListAds>) {
-            result(requestResult)
-        }
-    }
-    
+    // MARK: Spy    
     class AdsListPresenterSpy: AdsListPresentationLogic {
         weak var viewController: AdsListDisplayLogic?
         var presentAdsListCalled = false

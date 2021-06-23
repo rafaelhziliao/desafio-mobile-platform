@@ -24,6 +24,7 @@ final class AdsListInteractor {
 
 extension AdsListInteractor: AdsListBusinessLogic {
     func getAds(limit: String, region: String, sort: String, state: String, language: String) {
+        
         repository.getAds(limit: limit, region: region, sort: sort, state: state, language: language) { [weak self] response in
             
             switch response {
