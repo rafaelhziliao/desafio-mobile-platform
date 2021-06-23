@@ -6,20 +6,23 @@
 //
 
 import UIKit
-import NetworkLayer
 
-protocol AdsListDisplayLogic {
-    func displayAdsList()
-    func displayErrorOnLoadAdsList()
+protocol AdsListDisplayLogic: AnyObject {
+    func displayAdsList(_ ads: [Ad])
+    func displayErrorOnLoadAdsList(_ error: String)
 }
 
 final class AdsListViewController: UIViewController {
 
     // MARK: properties
 
-    var ads: [Ad] = []
+    var ads: [Ad] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
-    private lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let flowLayout = AdListViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.backgroundColor = .lightGray
@@ -33,7 +36,8 @@ final class AdsListViewController: UIViewController {
     }()
     
     var interactor: AdsListBusinessLogic?
-    let repository: AdsListRepository = APIAdsListRepository(networkService: URLSessionProvider())
+    
+    // Supposing this data is comming from user interaction
     let filter = (
         limit: "25",
         region: "11",
@@ -62,28 +66,14 @@ final class AdsListViewController: UIViewController {
     }
     
     private func getAds() {
-//        interactor?.getAds(
-//            limit: filter.limit,
-//            region: filter.region,
-//            sort: filter.sort,
-//            state: filter.state,
-//            language: filter.language
-//        )
-        
-        repository.getAds(limit: filter.limit, region: filter.region, sort: filter.sort, state: filter.state, language: filter.language) { result in
-
-            switch result {
-            case .success(let data):
-                self.ads = data.listAds ?? []
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+        interactor?.getAds(
+            limit: filter.limit,
+            region: filter.region,
+            sort: filter.sort,
+            state: filter.state,
+            language: filter.language
+        )
     }
-
 }
 
 // MARK: ViewCoding
@@ -102,6 +92,18 @@ extension AdsListViewController: ViewCoding {
     
     func additionalSetup() {
         view.backgroundColor = .systemBackground
+    }
+}
+
+// MARK: Display Logic
+
+extension AdsListViewController: AdsListDisplayLogic {
+    func displayAdsList(_ ads: [Ad]) {
+        self.ads = ads
+    }
+    
+    func displayErrorOnLoadAdsList(_ error: String) {
+        print(error)
     }
 }
 
