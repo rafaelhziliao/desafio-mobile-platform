@@ -18,5 +18,3 @@ class AdsListViewControllerFactory {
         return AdsListViewController(interactor: interactor)
     }
 }
-
-
