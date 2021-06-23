@@ -32,8 +32,11 @@ Boa sorte :)
     - [x] Uso da ferramenta [fastlane](https://fastlane.tools/) que pode ser usada para: [code sign](https://docs.fastlane.tools/actions/match/), [buildar e rodar testes](http://docs.fastlane.tools/actions/scan/#scan), [fazer deploy para o testflight](http://docs.fastlane.tools/actions/gym/#gym), tudo isso e muito mais, localmente ou em ambientes de CI.
 * [x] Reuso
     - [x] Criação de uma camada de [Network](https://github.com/rafaelhziliao/desafio-mobile-platform/blob/master/Modules/NetworkLayer) que possui a capacidade de adicionar novos providers e ainda conta com um default que seria baseado no `URLSession`
+    - [x] Extensions que facilitam o uso de view code
+    - [x] Extensions que torna denecessário o uso de indentificadores nas views hardcoded
+    - [x] Dequeue e registro de células type safe, sem precisar fazer os famosos `guard let` 
 * [x] Testes
-    - [x] Testes unitários nas camadas de Repository, Interactor e Presenter
+    - [x] Testes unitários nas camadas de Repository, Interactor, Presenter e ViewController
 * [x] Implementar automação de CI/CD
 * [x] Habilitar ferramenta de análise estática de seu código
 
@@ -41,6 +44,8 @@ Boa sorte :)
 * [] Testes de UI
 * [] Criar um framework de Design System
 * [] Criar um framework pra abrigar coisas mais comuns um CoreKit ou algo do tipo
+* [] Refatorar a parte da célula 
+* [] Refatorar a parte do download da imagem, para incluir um cache e desacoplar o download da imagem na celula
 
 # Resumo:
 * [Requisitos](#Requisitos)
