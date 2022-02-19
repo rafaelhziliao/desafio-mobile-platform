@@ -9,11 +9,27 @@ let deploymentVersion = "14.4"
 
 // MARK: - Build Settings
 
-let settings = Settings(defaultSettings: .recommended)
+let settings: Settings = .settings()
 
 // MARK: - Deployment Target
 
 let deploymentTarget: DeploymentTarget = .iOS(targetVersion: deploymentVersion, devices: [.iphone, .ipad])
+
+// MARK: - Actions
+
+let buildAction: BuildAction = .buildAction(targets: [.init(stringLiteral: "\(appName)")])
+let testAction: TestAction = .targets(
+    [
+        .init(stringLiteral: "\(appName)Tests"),
+        .init(stringLiteral: "\(appName)UITests")
+    ],
+    configuration: .debug
+)
+
+let runAction: RunAction = .runAction(configuration: .debug)
+let archiveAction: ArchiveAction = .archiveAction(configuration: .release)
+let profileAction: ProfileAction = .profileAction(configuration: .release)
+let analyzeAction: AnalyzeAction = .analyzeAction(configuration: .debug)
 
 // MARK: - Build Schemes
 
@@ -21,33 +37,25 @@ let schemes: [Scheme] = [
     Scheme(
         name: appName,
         shared: true,
-        buildAction: BuildAction(
-            targets: [
-                TargetReference(stringLiteral: "\(appName)"),
-                TargetReference(stringLiteral: "\(appName)Tests"),
-                TargetReference(stringLiteral: "\(appName)UITests")
-            ]
-        ),
-        testAction: TestAction(
-            targets: [TestableTarget(stringLiteral: "\(appName)Tests"), TestableTarget(stringLiteral: "\(appName)UITests")],
-            configurationName: "Debug"
-        ),
-        runAction: RunAction(configurationName: "Debug"),
-        archiveAction: ArchiveAction(configurationName: "Release"),
-        profileAction: ProfileAction(configurationName: "Release"),
-        analyzeAction: AnalyzeAction(configurationName: "Debug")
+        buildAction: buildAction,
+        testAction: testAction,
+        runAction: runAction,
+        archiveAction: archiveAction,
+        profileAction: profileAction,
+        analyzeAction: analyzeAction
     )
 ]
 
 // MARK: - Resources
 
-let appResources: [FileElement] = [
+let appResources: ResourceFileElements =
+[
     .folderReference(path: "Sources/\(appName)/Resources/Assets/Assets.xcassets"),
     .glob(pattern: "Sources/\(appName)/**/*.xib"),
     .glob(pattern: "Sources/\(appName)/**/*.storyboard")
 ]
 
-let testResources: [FileElement] = [
+let testResources: ResourceFileElements = [
     .glob(pattern: "Sources/\(appName)Tests/Resources/**/*.json")
 ]
 
@@ -59,7 +67,7 @@ let appDependencies: [TargetDependency] = [
 
 // MARK: - Build Phases
 
-let appRunScripts: [TargetAction] = [
+let appRunScripts: [TargetScript] = [
     .pre(path: "Scripts/swiftlint.sh", name: "SwiftLint Script")
 ]
 
@@ -75,7 +83,7 @@ let targets: [Target] = [
         infoPlist: .file(path: "Sources/\(appName)/Resources/Properties/Info.plist"),
         sources: ["Sources/\(appName)/**/*.swift"],
         resources: appResources,
-        actions: appRunScripts,
+        scripts: appRunScripts,
         dependencies: appDependencies
     ),
     

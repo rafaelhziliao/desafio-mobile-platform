@@ -9,11 +9,21 @@ let deploymentVersion = "14.4"
 
 // MARK: - Build Settings
 
-let settings = Settings(defaultSettings: .recommended)
+let settings: Settings = .settings()
 
 // MARK: - Deployment Target
 
 let deploymentTarget: DeploymentTarget = .iOS(targetVersion: deploymentVersion, devices: [.iphone, .ipad])
+
+// MARK: - Actions
+
+let buildAction: BuildAction = .buildAction(targets: [.init(stringLiteral: "\(frameworkName)")])
+let testAction: TestAction = .targets(
+    [
+        .init(stringLiteral: "\(frameworkName)Tests")
+    ],
+    configuration: .debug
+)
 
 // MARK: - Build Schemes
 
@@ -21,20 +31,12 @@ let schemes: [Scheme] = [
     Scheme(
         name: frameworkName,
         shared: true,
-        buildAction: BuildAction(
-            targets: [
-                TargetReference(stringLiteral: "\(frameworkName)"),
-                TargetReference(stringLiteral: "\(frameworkName)Tests")
-            ]
-        ),
-        testAction: TestAction(
-            targets: [TestableTarget(stringLiteral: "\(frameworkName)Tests")],
-            configurationName: "Debug"
-        ),
-        runAction: RunAction(configurationName: "Debug"),
-        archiveAction: ArchiveAction(configurationName: "Release"),
-        profileAction: ProfileAction(configurationName: "Release"),
-        analyzeAction: AnalyzeAction(configurationName: "Debug")
+        buildAction: buildAction,
+        testAction: testAction,
+        runAction: .runAction(configuration: .debug),
+        archiveAction: .archiveAction(configuration: .release),
+        profileAction: .profileAction(configuration: .release),
+        analyzeAction: .analyzeAction(configuration: .debug)
     )
 ]
 
